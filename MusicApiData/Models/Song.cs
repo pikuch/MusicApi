@@ -5,7 +5,7 @@ namespace MusicApiData.Models
     public class Song
     {
         public long Id { get; set; }
-        public string Name { get; set; }
+        public string Title { get; set; }
         public int LengthInSeconds { get; set; }
         public long AlbumId { get; set; }
         public Album Album { get; set; }
