@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MusicApiData.Migrations
 {
-    public partial class v1 : Migration
+    public partial class TheMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace MusicApiData.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(127)", maxLength: 127, nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -27,7 +27,7 @@ namespace MusicApiData.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(127)", maxLength: 127, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,7 +40,7 @@ namespace MusicApiData.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(127)", maxLength: 127, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,7 +53,7 @@ namespace MusicApiData.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(127)", maxLength: 127, nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -67,7 +67,7 @@ namespace MusicApiData.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(127)", maxLength: 127, nullable: false),
                     LengthInSeconds = table.Column<int>(type: "int", nullable: false),
                     AlbumId = table.Column<long>(type: "bigint", nullable: false),
                     ArtistId = table.Column<long>(type: "bigint", nullable: false),
@@ -158,9 +158,9 @@ namespace MusicApiData.Migrations
                 columns: new[] { "Id", "Created", "Name" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2021, 5, 10, 18, 16, 4, 829, DateTimeKind.Local).AddTicks(7440), "Cool playlist" },
-                    { 2L, new DateTime(2021, 8, 18, 18, 16, 4, 842, DateTimeKind.Local).AddTicks(6008), "Songs to listen to" },
-                    { 3L, new DateTime(2021, 10, 7, 18, 16, 4, 842, DateTimeKind.Local).AddTicks(6034), "Music" }
+                    { 1L, new DateTime(2021, 5, 10, 20, 24, 1, 946, DateTimeKind.Local).AddTicks(3389), "Cool playlist" },
+                    { 2L, new DateTime(2021, 8, 18, 20, 24, 1, 959, DateTimeKind.Local).AddTicks(8339), "Songs to listen to" },
+                    { 3L, new DateTime(2021, 10, 7, 20, 24, 1, 959, DateTimeKind.Local).AddTicks(8365), "Music" }
                 });
 
             migrationBuilder.InsertData(

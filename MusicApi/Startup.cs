@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MusicApiData;
+using MusicApiData.DAL;
+using MusicApiData.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +36,7 @@ namespace MusicApi
             });
             services.AddDbContext<MusicApiDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MusicApiDbConnection")));
+            services.AddTransient<IMusicApiRepository<Playlist>, MusicApiRepository<Playlist>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

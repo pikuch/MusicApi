@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace MusicApiData.DAL
 {
-    interface IMusicApiRepository<TModel> where TModel : class
+    public interface IMusicApiRepository<TModel> where TModel : class
     {
-        ICollection<TModel> GetAll();
-        TModel GetById(long id);
-        void Insert(TModel model);
-        void Update(TModel model);
-        void Delete(long id);
+        public ICollection<TModel> GetAll();
+        public TModel GetById(long id);
+        public void Insert(TModel model);
+        public void Update(TModel model);
+        public void Delete(long id);
     }
 }

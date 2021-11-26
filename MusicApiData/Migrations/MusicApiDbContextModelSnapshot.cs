@@ -27,7 +27,9 @@ namespace MusicApiData.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(127)
+                        .HasColumnType("nvarchar(127)");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
@@ -71,7 +73,9 @@ namespace MusicApiData.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(127)
+                        .HasColumnType("nvarchar(127)");
 
                     b.HasKey("Id");
 
@@ -108,7 +112,9 @@ namespace MusicApiData.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(127)
+                        .HasColumnType("nvarchar(127)");
 
                     b.HasKey("Id");
 
@@ -148,7 +154,9 @@ namespace MusicApiData.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(127)
+                        .HasColumnType("nvarchar(127)");
 
                     b.HasKey("Id");
 
@@ -158,19 +166,19 @@ namespace MusicApiData.Migrations
                         new
                         {
                             Id = 1L,
-                            Created = new DateTime(2021, 5, 10, 18, 16, 4, 829, DateTimeKind.Local).AddTicks(7440),
+                            Created = new DateTime(2021, 5, 10, 20, 24, 1, 946, DateTimeKind.Local).AddTicks(3389),
                             Name = "Cool playlist"
                         },
                         new
                         {
                             Id = 2L,
-                            Created = new DateTime(2021, 8, 18, 18, 16, 4, 842, DateTimeKind.Local).AddTicks(6008),
+                            Created = new DateTime(2021, 8, 18, 20, 24, 1, 959, DateTimeKind.Local).AddTicks(8339),
                             Name = "Songs to listen to"
                         },
                         new
                         {
                             Id = 3L,
-                            Created = new DateTime(2021, 10, 7, 18, 16, 4, 842, DateTimeKind.Local).AddTicks(6034),
+                            Created = new DateTime(2021, 10, 7, 20, 24, 1, 959, DateTimeKind.Local).AddTicks(8365),
                             Name = "Music"
                         });
                 });
@@ -292,7 +300,9 @@ namespace MusicApiData.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(127)
+                        .HasColumnType("nvarchar(127)");
 
                     b.HasKey("Id");
 
