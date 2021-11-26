@@ -12,6 +12,11 @@ namespace MusicApiData
         public DbSet<Playlist> Playlists { get; set; }
         public DbSet<Song> Songs { get; set; }
 
+        public MusicApiDbContext(DbContextOptions<MusicApiDbContext> options)
+            :base(options)
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

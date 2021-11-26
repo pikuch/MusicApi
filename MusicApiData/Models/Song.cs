@@ -13,6 +13,6 @@ namespace MusicApiData.Models
         public Artist Artist { get; set; }
         public long GenreId { get; set; }
         public Genre Genre { get; set; }
-        public ICollection<Playlist> Playlists { get; set; }
+        public ICollection<PlaylistSong> PlaylistSongs { get; set; }
     }
 }

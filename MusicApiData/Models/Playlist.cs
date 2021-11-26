@@ -8,6 +8,6 @@ namespace MusicApiData.Models
         public long Id { get; set; }
         public string Name { get; set; }
         public DateTime Created { get; set; }
-        public ICollection<Song> Songs { get; set; }
+        public ICollection<PlaylistSong> PlaylistSongs { get; set; }
     }
 }
