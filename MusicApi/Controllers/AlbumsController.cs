@@ -48,7 +48,7 @@ namespace MusicApi.Controllers
         /// </summary>
         /// <param name="id">Album id to search for</param>
         /// <returns>Requested album or 404 if it is not available</returns>
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetAlbumById")]
         public ActionResult<AlbumDto> GetAlbumById(long id)
         {
             var album = _albumRepository.GetById(id);
@@ -82,7 +82,7 @@ namespace MusicApi.Controllers
             else
             {
                 _logger.LogInformation($"{DateTime.Now} Create album with title={album.Title} succeeded.");
-                return Created($"/albums/{newAlbum.Id}" ,newAlbum);
+                return CreatedAtRoute(nameof(GetAlbumById), new { id = newAlbum.Id }, newAlbum);
             }
         }
     }
