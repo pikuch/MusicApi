@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicApiData.DAL
 {
-    public interface IMusicApiRepository<TModel> where TModel : class
+    public interface IMusicApiDao<TModel> where TModel : class
     {
         public ICollection<TModel> GetAll();
         public TModel GetById(long id);

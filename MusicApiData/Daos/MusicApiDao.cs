@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace MusicApiData.DAL
 {
-    public class MusicApiRepository<TModel> : IMusicApiRepository<TModel> where TModel : class
+    public class MusicApiDao<TModel> : IMusicApiDao<TModel> where TModel : class
     {
         private readonly MusicApiDbContext _context = null;
         private readonly DbSet<TModel> _table = null;
 
-        public MusicApiRepository(MusicApiDbContext context)
+        public MusicApiDao(MusicApiDbContext context)
         {
             _context = context;
             _table = _context.Set<TModel>();

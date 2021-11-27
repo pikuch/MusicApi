@@ -15,9 +15,9 @@ namespace MusicApi.Controllers
     {
         
         private readonly ILogger<PlaylistsController> _logger;
-        private readonly IMusicApiRepository<Playlist> _repository;
+        private readonly IMusicApiDao<Playlist> _repository;
 
-        public PlaylistsController(ILogger<PlaylistsController> logger, IMusicApiRepository<Playlist> repository)
+        public PlaylistsController(ILogger<PlaylistsController> logger, IMusicApiDao<Playlist> repository)
         {
             _logger = logger;
             _repository = repository;
@@ -34,7 +34,15 @@ namespace MusicApi.Controllers
         public ActionResult<Playlist> GetPlaylistById(long id)
         {
             var playlist = _repository.GetById(id);
-            return Ok(playlist);
+
+            if (playlist == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(playlist);
+            }
         }
     }
 }

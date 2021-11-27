@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using MusicApiData;
 using MusicApiData.DAL;
 using MusicApiData.Models;
+using MusicApiData.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,10 @@ namespace MusicApi
             });
             services.AddDbContext<MusicApiDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MusicApiDbConnection")));
-            services.AddTransient<IMusicApiRepository<Playlist>, MusicApiRepository<Playlist>>();
+            services.AddTransient<IMusicApiDao<Playlist>, MusicApiDao<Playlist>>();
+            services.AddTransient<IMusicApiDao<Album>, MusicApiDao<Album>>();
+            services.AddTransient<IAlbumRepository, AlbumRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
