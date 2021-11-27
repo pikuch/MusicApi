@@ -10,8 +10,8 @@ namespace MusicApiData.DAL
     {
         public ICollection<TModel> GetAll();
         public TModel GetById(long id);
-        public void Insert(TModel model);
-        public void Update(TModel model);
-        public void Delete(long id);
+        public TModel Insert(TModel model);
+        public TModel Update(TModel model);
+        public bool Delete(long id);
     }
 }

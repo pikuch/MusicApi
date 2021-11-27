@@ -14,26 +14,45 @@ using MusicApiData.Models;
 using MusicApiData.Repositories;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace MusicApi
 {
+    /// <summary>
+    /// API startup class
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Initializes startup class
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// Property containing configuration
+        /// </summary>
         public IConfiguration Configuration { get; }
 
+        /// <summary>
+        /// Configures services
+        /// </summary>
+        /// <param name="services">Collection of services</param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MusicApi", Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "MusicApi", Version = "v1" });
+                var commentsFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var commentsPath = Path.Combine(AppContext.BaseDirectory, commentsFileName);
+                options.IncludeXmlComments(commentsPath);
             });
             services.AddDbContext<MusicApiDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("MusicApiDbConnection")));
@@ -43,6 +62,11 @@ namespace MusicApi
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
+        /// <summary>
+        /// Configures the app
+        /// </summary>
+        /// <param name="app">App to configure</param>
+        /// <param name="env">Web host environment</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

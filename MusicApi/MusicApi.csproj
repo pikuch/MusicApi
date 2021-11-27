@@ -18,4 +18,8 @@
     <ProjectReference Include="..\MusicApiData\MusicApiData.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
 </Project>

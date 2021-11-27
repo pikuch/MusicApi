@@ -7,8 +7,8 @@ namespace MusicApiData.Repositories
     {
         public ICollection<AlbumDto> GetAll();
         public AlbumDto GetById(long id);
-        public void Insert(AlbumDto album);
-        public void Update(AlbumDto album);
-        public void Delete(long id);
+        public AlbumDto Insert(AlbumDto album);
+        public AlbumDto Update(AlbumDto album);
+        public bool Delete(long id);
     }
 }

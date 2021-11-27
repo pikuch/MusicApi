@@ -27,18 +27,20 @@ namespace MusicApiData.Repositories
             return _mapper.Map<AlbumDto>(_albumDao.GetById(id));
         }
 
-        public void Insert(AlbumDto album)
+        public AlbumDto Insert(AlbumDto album)
         {
-            _albumDao.Insert(_mapper.Map<Album>(album));
+            var newAlbum = album;
+            newAlbum.Id = 0;
+            return _mapper.Map<AlbumDto>(_albumDao.Insert(_mapper.Map<Album>(newAlbum)));
         }
 
-        public void Update(AlbumDto album)
+        public AlbumDto Update(AlbumDto album)
         {
-            _albumDao.Update(_mapper.Map<Album>(album));
+            return _mapper.Map<AlbumDto>(_albumDao.Update(_mapper.Map<Album>(album)));
         }
-        public void Delete(long id)
+        public bool Delete(long id)
         {
-            _albumDao.Delete(id);
+            return _albumDao.Delete(id);
         }
 
     }

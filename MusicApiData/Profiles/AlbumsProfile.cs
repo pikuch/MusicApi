@@ -9,6 +9,7 @@ namespace MusicApiData.Profiles
         public AlbumsProfile()
         {
             CreateMap<Album, AlbumDto>();
+            CreateMap<AlbumDto, Album>();
         }
     }
 }

@@ -27,22 +27,36 @@ namespace MusicApiData.DAL
             return _table.Find(id);
         }
 
-        public void Insert(TModel model)
+        public TModel Insert(TModel model)
         {
             _table.Add(model);
-            _context.SaveChanges();
+            if (_context.SaveChanges() == 1)
+            {
+                return model;
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public void Update(TModel model)
+        public TModel Update(TModel model)
         {
             _table.Attach(model);
             _context.Entry(model).State = EntityState.Modified;
-            _context.SaveChanges();
+            if (_context.SaveChanges() == 1)
+            {
+                return model;
+            }
+            else
+            {
+                return null;
+            }
         }
-        public void Delete(long id)
+        public bool Delete(long id)
         {
             _table.Remove(_table.Find(id));
-            _context.SaveChanges();
+            return _context.SaveChanges() == 1;
         }
 
     }
