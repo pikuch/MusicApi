@@ -58,7 +58,9 @@ namespace MusicApi
                 options.UseSqlServer(Configuration.GetConnectionString("MusicApiDbConnection")));
             services.AddTransient<IMusicApiDao<Playlist>, MusicApiDao<Playlist>>();
             services.AddTransient<IMusicApiDao<Album>, MusicApiDao<Album>>();
+            services.AddTransient<IMusicApiDao<Song>, MusicApiDao<Song>>();
             services.AddTransient<IAlbumRepository, AlbumRepository>();
+            services.AddTransient<ISongRepository, SongRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 

@@ -17,19 +17,19 @@ namespace MusicApiData.DAL
             _context = context;
             _table = _context.Set<TModel>();
         }
-        public ICollection<TModel> GetAll()
+        public async Task<ICollection<TModel>> GetAllAsync()
         {
-            return _table.ToList();
+            return await _table.AsNoTracking().ToListAsync();
         }
 
-        public TModel GetById(long id)
+        public async Task<TModel> GetByIdAsync(long id)
         {
-            return _table.Find(id);
+            return await _table.FindAsync(id);
         }
 
-        public TModel Insert(TModel model)
+        public async Task<TModel> InsertAsync(TModel model)
         {
-            _table.Add(model);
+            await _table.AddAsync(model);
             if (_context.SaveChanges() == 1)
             {
                 return model;
@@ -40,23 +40,18 @@ namespace MusicApiData.DAL
             }
         }
 
-        public TModel Update(TModel model)
+        public async Task<bool> UpdateAsync(TModel model)
         {
-            _table.Attach(model);
-            _context.Entry(model).State = EntityState.Modified;
-            if (_context.SaveChanges() == 1)
-            {
-                return model;
-            }
-            else
-            {
-                return null;
-            }
+            //_context.Entry(model).State = EntityState.Modified;
+            _table.Update(model);
+            var result = await _context.SaveChangesAsync();
+            return (result == 1);
         }
-        public bool Delete(long id)
+        public async Task<bool> DeleteAsync(long id)
         {
             _table.Remove(_table.Find(id));
-            return _context.SaveChanges() == 1;
+            var result = await _context.SaveChangesAsync();
+            return (result == 1);
         }
 
     }

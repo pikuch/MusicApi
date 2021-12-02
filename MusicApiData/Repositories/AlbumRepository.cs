@@ -4,6 +4,7 @@ using MusicApiData.Dtos;
 using MusicApiData.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MusicApiData.Repositories
 {
@@ -17,30 +18,39 @@ namespace MusicApiData.Repositories
             _mapper = mapper;
         }
 
-        public ICollection<AlbumDto> GetAll()
+        public async Task<bool> Exists(long id)
         {
-            return _mapper.Map<ICollection<AlbumDto>>(_albumDao.GetAll());
+            var result = await _albumDao.GetByIdAsync(id);
+            return result != null;
         }
 
-        public AlbumDto GetById(long id)
+        public async Task<ICollection<AlbumDto>> GetAllAsync()
         {
-            return _mapper.Map<AlbumDto>(_albumDao.GetById(id));
+            var result = await _albumDao.GetAllAsync();
+            return _mapper.Map<ICollection<AlbumDto>>(result);
         }
 
-        public AlbumDto Insert(AlbumDto album)
+        public async Task<AlbumDto> GetByIdAsync(long id)
         {
-            var newAlbum = album;
-            newAlbum.Id = 0;
-            return _mapper.Map<AlbumDto>(_albumDao.Insert(_mapper.Map<Album>(newAlbum)));
+            var result = await _albumDao.GetByIdAsync(id);
+            return _mapper.Map<AlbumDto>(result);
         }
 
-        public AlbumDto Update(AlbumDto album)
+        public async Task<AlbumDto> InsertAsync(AlbumDto album)
         {
-            return _mapper.Map<AlbumDto>(_albumDao.Update(_mapper.Map<Album>(album)));
+            var result = await _albumDao.InsertAsync(_mapper.Map<Album>(album));
+            return _mapper.Map<AlbumDto>(result);
         }
-        public bool Delete(long id)
+
+        public async Task<bool> UpdateAsync(AlbumDto album)
         {
-            return _albumDao.Delete(id);
+            var result = await _albumDao.UpdateAsync(_mapper.Map<Album>(album));
+            return result;
+        }
+        public async Task<bool> DeleteAsync(long id)
+        {
+            var result = await _albumDao.DeleteAsync(id);
+            return result;
         }
 
     }

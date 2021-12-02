@@ -8,10 +8,10 @@ namespace MusicApiData.DAL
 {
     public interface IMusicApiDao<TModel> where TModel : class
     {
-        public ICollection<TModel> GetAll();
-        public TModel GetById(long id);
-        public TModel Insert(TModel model);
-        public TModel Update(TModel model);
-        public bool Delete(long id);
+        public Task<ICollection<TModel>> GetAllAsync();
+        public Task<TModel> GetByIdAsync(long id);
+        public Task<TModel> InsertAsync(TModel model);
+        public Task<bool> UpdateAsync(TModel model);
+        public Task<bool> DeleteAsync(long id);
     }
 }
